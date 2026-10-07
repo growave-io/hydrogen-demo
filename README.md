@@ -48,7 +48,7 @@ All theme values live in `app/styles/theme.css`:
 
 `app/styles/tailwind.css` maps these variables to Tailwind utilities through `@theme inline`. To change the theme, edit or replace `theme.css`. The components don't need to change.
 
-shadcn themes from [ui.shadcn.com/themes](https://ui.shadcn.com/themes) can be pasted straight into `theme.css`.
+A theme generated at [ui.shadcn.com/themes](https://ui.shadcn.com/themes) can replace the color `:root` and `.dark` blocks. The font block above them stays.
 
 ## Adding components
 
