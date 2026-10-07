@@ -46,11 +46,13 @@ export default function Collections() {
   const {collections} = useLoaderData<typeof loader>();
 
   return (
-    <div className="collections">
-      <h1>Collections</h1>
+    <div className="flex flex-col gap-8">
+      <h1 className="font-heading text-2xl font-semibold tracking-tight">
+        Collections
+      </h1>
       <PaginatedResourceSection<CollectionFragment>
         connection={collections}
-        resourcesClassName="collections-grid"
+        resourcesClassName="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3"
       >
         {({node: collection, index}) => (
           <CollectionItem
@@ -73,21 +75,24 @@ function CollectionItem({
 }) {
   return (
     <Link
-      className="collection-item"
+      className="group flex flex-col gap-3"
       key={collection.id}
       to={`/collections/${collection.handle}`}
       prefetch="intent"
     >
-      {collection?.image && (
-        <Image
-          alt={collection.image.altText || collection.title}
-          aspectRatio="1/1"
-          data={collection.image}
-          loading={index < 3 ? 'eager' : undefined}
-          sizes="(min-width: 45em) 400px, 100vw"
-        />
-      )}
-      <h5>{collection.title}</h5>
+      <div className="aspect-[4/3] overflow-hidden rounded-lg bg-muted">
+        {collection?.image && (
+          <Image
+            alt={collection.image.altText || collection.title}
+            aspectRatio="4/3"
+            data={collection.image}
+            loading={index < 3 ? 'eager' : undefined}
+            sizes="(min-width: 45em) 400px, 100vw"
+            className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        )}
+      </div>
+      <h2 className="font-medium">{collection.title}</h2>
     </Link>
   );
 }

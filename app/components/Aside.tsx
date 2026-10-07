@@ -1,76 +1,47 @@
+import {createContext, type ReactNode, useContext, useState} from 'react';
 import {
-  createContext,
-  type ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
-import {useId} from 'react';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from '~/components/ui/sheet';
 
-type AsideType = 'search' | 'cart' | 'mobile' | 'closed';
+type AsideType = 'cart' | 'mobile' | 'closed';
 type AsideContextValue = {
   type: AsideType;
   open: (mode: AsideType) => void;
   close: () => void;
 };
 
-/**
- * A side bar component with Overlay
- * @example
- * ```jsx
- * <Aside type="search" heading="SEARCH">
- *  <input type="search" />
- *  ...
- * </Aside>
- * ```
- */
 export function Aside({
   children,
   heading,
   type,
+  side = 'right',
 }: {
   children?: React.ReactNode;
   type: AsideType;
   heading: React.ReactNode;
+  side?: 'left' | 'right';
 }) {
   const {type: activeType, close} = useAside();
-  const expanded = type === activeType;
-  const id = useId();
-  useEffect(() => {
-    const abortController = new AbortController();
-
-    if (expanded) {
-      document.addEventListener(
-        'keydown',
-        function handler(event: KeyboardEvent) {
-          if (event.key === 'Escape') {
-            close();
-          }
-        },
-        {signal: abortController.signal},
-      );
-    }
-    return () => abortController.abort();
-  }, [close, expanded]);
 
   return (
-    <div
-      aria-modal
-      className={`overlay ${expanded ? 'expanded' : ''}`}
-      role="dialog"
-      aria-labelledby={id}
+    <Sheet
+      open={type === activeType}
+      onOpenChange={(open) => {
+        if (!open) close();
+      }}
     >
-      <button className="close-outside" onClick={close} />
-      <aside>
-        <header>
-          <h3 id={id}>{heading}</h3>
-          <button className="close reset" onClick={close} aria-label="Close">
-            &times;
-          </button>
-        </header>
-        <main>{children}</main>
-      </aside>
-    </div>
+      <SheetContent side={side} className="w-full sm:max-w-md">
+        <SheetHeader>
+          <SheetTitle>{heading}</SheetTitle>
+          <SheetDescription className="sr-only">{heading}</SheetDescription>
+        </SheetHeader>
+        <div className="flex-1 overflow-y-auto px-4 pb-4">{children}</div>
+      </SheetContent>
+    </Sheet>
   );
 }
 

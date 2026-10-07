@@ -4,6 +4,7 @@ import type {CartApiQueryFragment} from 'storefrontapi.generated';
 import {useAside} from '~/components/Aside';
 import {CartLineItem, type CartLine} from '~/components/CartLineItem';
 import {CartSummary} from './CartSummary';
+import {Button} from '~/components/ui/button';
 
 export type CartLayout = 'page' | 'aside';
 
@@ -42,25 +43,27 @@ export function CartMain({layout, cart: originalCart}: CartMainProps) {
   const cart = useOptimisticCart(originalCart);
 
   const linesCount = Boolean(cart?.lines?.nodes?.length || 0);
-  const withDiscount =
-    cart &&
-    Boolean(cart?.discountCodes?.filter((code) => code.applicable)?.length);
-  const className = `cart-main ${withDiscount ? 'with-discount' : ''}`;
   const cartHasItems = cart?.totalQuantity ? cart.totalQuantity > 0 : false;
   const childrenMap = getLineItemChildrenMap(cart?.lines?.nodes ?? []);
 
   return (
     <section
-      className={className}
+      className="flex flex-col gap-6"
       aria-label={layout === 'page' ? 'Cart page' : 'Cart drawer'}
     >
       <CartEmpty hidden={linesCount} layout={layout} />
-      <div className="cart-details">
+      <div
+        className={
+          layout === 'page'
+            ? 'grid gap-10 lg:grid-cols-[1fr_360px]'
+            : 'flex flex-col gap-6'
+        }
+      >
         <p id="cart-lines" className="sr-only">
           Line items
         </p>
         <div>
-          <ul aria-labelledby="cart-lines">
+          <ul aria-labelledby="cart-lines" className="divide-y">
             {(cart?.lines?.nodes ?? []).map((line) => {
               // we do not render non-parent lines at the root of the cart
               if (
@@ -94,16 +97,13 @@ function CartEmpty({
 }) {
   const {close} = useAside();
   return (
-    <div hidden={hidden}>
-      <br />
-      <p>
-        Looks like you haven&rsquo;t added anything yet, let&rsquo;s get you
-        started!
-      </p>
-      <br />
-      <Link to="/collections" onClick={close} prefetch="viewport">
-        Continue shopping →
-      </Link>
+    <div hidden={hidden} className="flex flex-col items-start gap-4 py-6">
+      <p className="text-muted-foreground">Your cart is empty.</p>
+      <Button asChild variant="outline">
+        <Link to="/collections/all" onClick={close} prefetch="viewport">
+          Continue shopping
+        </Link>
+      </Button>
     </div>
   );
 }

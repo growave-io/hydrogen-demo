@@ -1,45 +1,65 @@
-# Hydrogen template: Skeleton
+# Hydrogen Demo
 
-Hydrogen is Shopify’s stack for headless commerce. Hydrogen is designed to dovetail with [React Router](https://reactrouter.com/), the modern multi-strategy router for React. This template contains a **minimal setup** of components, queries and tooling to get started with Hydrogen.
+A minimal Shopify [Hydrogen](https://shopify.dev/docs/storefronts/headless/hydrogen) storefront styled with [shadcn/ui](https://ui.shadcn.com). It's the base for the Growave integration demo.
 
-[Check out Hydrogen docs](https://shopify.dev/custom-storefronts/hydrogen)
-[Get familiar with React Router](https://reactrouter.com/start/framework/routing)
-
-## What's included
-
-- React Router
-- Hydrogen
-- Oxygen
-- Vite
-- Shopify CLI
-- ESLint
-- Prettier
-- GraphQL generator
-- TypeScript and JavaScript flavors
-- Minimal setup of components and routes
+Stack: Hydrogen 2026.4 on React Router 7, React 19, Vite, Tailwind CSS v4 and shadcn/ui (Radix, `radix-nova` style).
 
 ## Getting started
 
-**Requirements:**
-
-- Node.js version 22.x or 24.x
+Requires Node.js 22 or 24.
 
 ```bash
-npm create @shopify/hydrogen@latest
-```
-
-## Building for production
-
-```bash
-npm run build
-```
-
-## Local development
-
-```bash
+npm install
+cp .env.example .env
 npm run dev
 ```
 
-## Setup for using Customer Account API (`/account` section)
+With no store linked, the app uses [mock.shop](https://mock.shop) data. Mock.shop only works with `npm run dev`. `npm run preview` needs a real store.
 
-Follow step 1 and 2 of <https://shopify.dev/docs/custom-storefronts/building-with-the-customer-account-api/hydrogen#step-1-set-up-a-public-domain-for-local-development>
+## Connecting a store
+
+The store needs the Hydrogen (or Headless) sales channel installed.
+
+```bash
+npx shopify hydrogen link
+npx shopify hydrogen env pull
+```
+
+Customer account login in local development needs a tunnel: `npm run dev -- --customer-account-push`.
+
+## Pages
+
+- Home: `/`
+- Collections: `/collections`, `/collections/:handle`, `/collections/all`
+- Product: `/products/:handle`
+- Cart: `/cart` and the cart drawer
+- Search: `/search` (products only)
+- Account: `/account/*`
+
+Blogs, pages and policies routes are intentionally left out.
+
+## Theming
+
+All theme values live in `app/styles/theme.css`:
+
+- colors as oklch CSS variables under `:root` and `.dark`
+- `--radius`
+- `--font-body` and the font import
+
+`app/styles/tailwind.css` maps these variables to Tailwind utilities through `@theme inline`. To change the theme, edit or replace `theme.css`. The components don't need to change.
+
+shadcn themes from [ui.shadcn.com/themes](https://ui.shadcn.com/themes) can be pasted straight into `theme.css`.
+
+## Adding components
+
+```bash
+npx shadcn@latest add <component>
+```
+
+Components go into `app/components/ui`.
+
+## Scripts
+
+- `npm run dev`: dev server with GraphQL codegen
+- `npm run build`: production build for Oxygen
+- `npm run typecheck`, `npm run lint`
