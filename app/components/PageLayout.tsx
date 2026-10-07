@@ -5,9 +5,12 @@ import {Aside} from '~/components/Aside';
 import {Footer} from '~/components/Footer';
 import {Header, HeaderMenu} from '~/components/Header';
 import {CartMain} from '~/components/CartMain';
+import {DemoNotices} from '~/components/DemoNotices';
+import type {DemoNotice} from '~/lib/demoNotices';
 
 interface PageLayoutProps {
   cart: Promise<CartApiQueryFragment | null>;
+  demoNotices: DemoNotice[];
   header: HeaderQuery;
   isLoggedIn: Promise<boolean>;
   publicStoreDomain: string;
@@ -17,6 +20,7 @@ interface PageLayoutProps {
 export function PageLayout({
   cart,
   children = null,
+  demoNotices,
   header,
   isLoggedIn,
   publicStoreDomain,
@@ -34,6 +38,7 @@ export function PageLayout({
             publicStoreDomain={publicStoreDomain}
           />
         )}
+        <DemoNotices notices={demoNotices} />
         <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6">
           {children}
         </main>

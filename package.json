@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "shopify hydrogen build --codegen --disable-route-warning",
-    "dev": "shopify hydrogen dev --codegen --port 3081",
+    "dev": "node scripts/dev.mjs",
+    "store:link": "node scripts/link-store.mjs",
     "preview": "shopify hydrogen preview --build --port 3081",
     "lint": "eslint --no-error-on-unmatched-pattern .",
     "typecheck": "react-router typegen && tsc --noEmit",

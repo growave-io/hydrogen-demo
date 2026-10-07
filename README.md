@@ -10,22 +10,29 @@ Requires Node.js 22 or 24.
 
 ```bash
 npm install
-cp .env.example .env
 npm run dev  # http://localhost:3081
 ```
 
-With no store linked, the app uses [mock.shop](https://mock.shop) data. Mock.shop only works with `npm run dev`. `npm run preview` needs a real store.
+Without a store profile the demo runs on [mock.shop](https://mock.shop) data and shows a notice that Growave widgets are unavailable. To see Growave, connect a store that has Growave installed.
 
 ## Connecting a store
 
-The store needs the Hydrogen (or Headless) sales channel installed.
+Each store gets its own profile in `envs/`. Every file there except `envs/example.env` is git-ignored.
 
-```bash
-npx shopify hydrogen link
-npx shopify hydrogen env pull
-```
+1. Copy `envs/example.env` to `envs/<store>.env`, for example `envs/acme.env`.
+2. Fill in `PUBLIC_STORE_DOMAIN`, `PUBLIC_STOREFRONT_API_TOKEN` and `SESSION_SECRET`. The token comes from the store admin: Sales channels → Headless or Hydrogen → your storefront → Storefront API.
+3. Run `STORE=acme npm run dev`.
 
-Customer account login in local development needs a tunnel: `npm run dev -- --customer-account-push`.
+If the profile is missing or incomplete, the demo falls back to mock.shop and says why, both in the terminal and on the page.
+
+### Customer login
+
+Customer login uses the Customer Account API, which doesn't accept `localhost` and needs a public HTTPS domain.
+
+- **Hydrogen sales channel.** Add the Customer Account variables to the profile, then link the storefront once with `STORE=acme npm run store:link`. That saves the link to `envs/acme.shopify.json`. From then on `STORE=acme npm run dev` starts a tunnel (`--customer-account-push`) and registers it with the store. Open the `tryhydrogen.dev` URL it prints.
+- **Headless sales channel.** `--customer-account-push` only works with Hydrogen storefronts. Set up a tunnel yourself (for example ngrok) and add its URL to the Customer Account API settings in the store admin.
+
+`npm run dev` copies the profile's link into `.shopify/project.json` and removes a link left over from another store, so link stores through `npm run store:link` rather than `shopify hydrogen link`.
 
 ## Pages
 
@@ -60,6 +67,7 @@ Components go into `app/components/ui`.
 
 ## Scripts
 
-- `npm run dev`: dev server with GraphQL codegen
+- `npm run dev`: dev server on port 3081 (override with `PORT`) with GraphQL codegen; `STORE=<name>` selects `envs/<name>.env`
+- `npm run store:link`: link the `STORE` profile to its Hydrogen storefront
 - `npm run build`: production build for Oxygen
 - `npm run typecheck`, `npm run lint`
