@@ -179,17 +179,32 @@ export function ErrorBoundary() {
     errorMessage = error.message;
   }
 
-  return (
-    <div className="mx-auto max-w-xl px-4 py-24 text-center">
+  const data = useRouteLoaderData<RootLoader>('root');
+  const content = (
+    <div className="mx-auto max-w-xl py-16 text-center">
       <p className="text-sm text-muted-foreground">{errorStatus}</p>
       <h1 className="mt-2 font-heading text-2xl font-semibold">
         {errorStatus === 404 ? 'Page not found' : 'Something went wrong'}
       </h1>
       {errorMessage && (
-        <pre className="mt-6 overflow-x-auto rounded-lg bg-muted p-4 text-left text-xs">
+        <pre className="mt-6 rounded-lg bg-muted p-4 text-left text-xs break-words whitespace-pre-wrap">
           {errorMessage}
         </pre>
       )}
     </div>
+  );
+
+  if (!data) {
+    return <div className="px-4">{content}</div>;
+  }
+
+  return (
+    <Analytics.Provider
+      cart={data.cart}
+      shop={data.shop}
+      consent={data.consent}
+    >
+      <PageLayout {...data}>{content}</PageLayout>
+    </Analytics.Provider>
   );
 }

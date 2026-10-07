@@ -11,7 +11,7 @@ Requires Node.js 22 or 24.
 ```bash
 npm install
 cp .env.example .env
-npm run dev
+npm run dev  # http://localhost:3081
 ```
 
 With no store linked, the app uses [mock.shop](https://mock.shop) data. Mock.shop only works with `npm run dev`. `npm run preview` needs a real store.
