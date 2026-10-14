@@ -1,0 +1,13 @@
+.git
+.github
+.cache
+.react-router
+.shopify
+.superpowers
+node_modules
+dist
+envs
+.env
+.env.*
+*.log
+.DS_Store
