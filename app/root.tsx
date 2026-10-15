@@ -13,17 +13,17 @@ import {
 import type {Route} from './+types/root';
 import favicon from '~/assets/favicon.svg';
 import {HEADER_QUERY} from '~/lib/fragments';
-import {getDemoNotice} from '~/components/DemoNotice';
+import {getDemoNotice} from '~/components/layout/DemoNotice';
 import {getCurrentCustomer} from '~/lib/customer';
 import {OverlayPlaceholders, generateSignature} from '@growave-io/react-sdk';
 import {toNumericId} from '~/lib/growave';
-import {GrowaveSetup} from '~/components/GrowaveSetup';
+import {GrowaveSetup} from '~/components/growave/GrowaveSetup';
 import {
   GrowaveCustomizationsHook,
   GrowaveWidgetStyles,
-} from '~/components/GrowaveWidgets';
+} from '~/components/growave/GrowaveWidgets';
 import tailwindCss from './styles/tailwind.css?url';
-import {PageLayout} from './components/PageLayout';
+import {PageLayout} from './components/layout/PageLayout';
 
 export type RootLoader = typeof loader;
 

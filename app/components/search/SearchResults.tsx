@@ -1,7 +1,7 @@
 import {Link} from 'react-router';
 import {Image, Money, Pagination} from '@shopify/hydrogen';
 import {urlWithTrackingParams, type RegularSearchReturn} from '~/lib/search';
-import {PRODUCT_GRID_CLASS} from '~/components/ProductItem';
+import {PRODUCT_GRID_CLASS} from '~/components/product/ProductItem';
 import {Button} from '~/components/ui/button';
 
 type SearchItems = RegularSearchReturn['result']['items'];

@@ -8,7 +8,7 @@ import {
 import {MenuIcon, SearchIcon, ShoppingBagIcon, UserIcon} from 'lucide-react';
 import type {HeaderQuery, CartApiQueryFragment} from 'storefrontapi.generated';
 import {WishlistsGoToWishlistsPageHeaderWidget} from '@growave-io/react-sdk';
-import {useAside} from '~/components/Aside';
+import {useAside} from '~/components/layout/Aside';
 import {Badge} from '~/components/ui/badge';
 import {Button} from '~/components/ui/button';
 import {cn} from '~/lib/utils';

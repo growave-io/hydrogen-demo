@@ -1,12 +1,12 @@
 import {Await} from 'react-router';
 import {Suspense} from 'react';
 import type {CartApiQueryFragment, HeaderQuery} from 'storefrontapi.generated';
-import {Aside} from '~/components/Aside';
+import {Aside} from '~/components/layout/Aside';
 import {TooltipProvider} from '~/components/ui/tooltip';
-import {Footer} from '~/components/Footer';
-import {Header, HeaderMenu} from '~/components/Header';
-import {CartMain} from '~/components/CartMain';
-import {DemoNotice} from '~/components/DemoNotice';
+import {Footer} from '~/components/layout/Footer';
+import {Header, HeaderMenu} from '~/components/layout/Header';
+import {CartMain} from '~/components/cart/CartMain';
+import {DemoNotice} from '~/components/layout/DemoNotice';
 import type {CurrentCustomer} from '~/lib/customer';
 
 interface PageLayoutProps {

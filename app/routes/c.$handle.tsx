@@ -2,10 +2,13 @@ import {redirect, useLoaderData} from 'react-router';
 import type {Route} from './+types/c.$handle';
 import {getPaginationVariables, Analytics} from '@shopify/hydrogen';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
-import {IntegrationSection} from '~/components/IntegrationSection';
+import {IntegrationSection} from '~/components/growave/IntegrationSection';
 import {productCardWidgets} from '~/integrations/home';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
-import {ProductItem, PRODUCT_GRID_CLASS} from '~/components/ProductItem';
+import {
+  ProductItem,
+  PRODUCT_GRID_CLASS,
+} from '~/components/product/ProductItem';
 import type {ProductItemFragment} from 'storefrontapi.generated';
 
 export const meta: Route.MetaFunction = ({data}) => {

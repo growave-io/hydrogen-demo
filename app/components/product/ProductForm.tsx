@@ -4,9 +4,9 @@ import type {
   Maybe,
   ProductOptionValueSwatch,
 } from '@shopify/hydrogen/storefront-api-types';
-import {AddToCartButton} from './AddToCartButton';
+import {AddToCartButton} from '~/components/cart/AddToCartButton';
 import {cn} from '~/lib/utils';
-import {useAside} from './Aside';
+import {useAside} from '~/components/layout/Aside';
 import type {ProductFragment} from 'storefrontapi.generated';
 
 export function ProductForm({

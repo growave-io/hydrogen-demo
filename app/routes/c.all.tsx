@@ -2,9 +2,12 @@ import type {Route} from './+types/c.all';
 import {useLoaderData} from 'react-router';
 import {getPaginationVariables, Image, Money} from '@shopify/hydrogen';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
-import {IntegrationSection} from '~/components/IntegrationSection';
+import {IntegrationSection} from '~/components/growave/IntegrationSection';
 import {productCardWidgets} from '~/integrations/home';
-import {ProductItem, PRODUCT_GRID_CLASS} from '~/components/ProductItem';
+import {
+  ProductItem,
+  PRODUCT_GRID_CLASS,
+} from '~/components/product/ProductItem';
 import type {CollectionItemFragment} from 'storefrontapi.generated';
 
 export const meta: Route.MetaFunction = () => {
