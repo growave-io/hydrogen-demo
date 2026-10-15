@@ -116,6 +116,8 @@ The same server runs without Docker after a build: `npm run build`, then `node -
 
 ## Scripts
 
+The `Makefile` has a target for each way to run the demo, and `make` lists them: `make dev`, `make preview` (production build in MiniOxygen, the local Oxygen runtime), `make start` (production build on `node-server.mjs`) and `make docker`. They take `STORE` and `PORT`, for example `make preview STORE=acme`.
+
 - `npm run dev`: dev server on port 3081 (override with `PORT`) with GraphQL codegen; `STORE=<name>` selects `envs/<name>.env` (`demo` by default)
 - `npm run tunnel`: ngrok tunnel for customer login with the Headless channel (`TUNNEL_URL`, `PORT`)
 - `npm run build`: production build, used by Oxygen and by `node-server.mjs`

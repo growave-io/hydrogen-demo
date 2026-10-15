@@ -23,7 +23,7 @@ import {Badge} from '~/components/ui/badge';
 import {Button} from '~/components/ui/button';
 
 export const meta: Route.MetaFunction = () => {
-  return [{title: 'Hydrogen Demo'}];
+  return [{title: 'Growave Hydrogen Demo'}];
 };
 
 export async function loader({context}: Route.LoaderArgs) {
