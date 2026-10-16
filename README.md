@@ -20,8 +20,8 @@ Without `STORE`, `npm run dev` uses `envs/demo.env`, which points at Growave's p
 The demo follows the [React SDK guide](https://docs.growave.io/docs/Sdk/react_sdk/) and the signed customer authentication from the [custom storefront guide](https://docs.growave.io/docs/Sdk/custom_storefront/). The integration code lives in these files:
 
 - `app/root.tsx` builds the SDK config from the environment and, in its loader, signs the signed-in customer with `PRIVATE_GROWAVE_API_SECRET`.
-- `app/components/GrowaveSetup.tsx` loads the Growave bundle after hydration, initializes the SDK, authenticates the signed-in customer and connects the cart widgets to the Hydrogen cart.
-- `app/components/GrowaveWidgets.tsx` has the widget placeholders, plus the customization hook and style fixes that `app/root.tsx` puts in `<head>`.
+- `app/components/growave/GrowaveSetup.tsx` loads the Growave bundle after hydration, initializes the SDK, authenticates the signed-in customer and connects the cart widgets to the Hydrogen cart.
+- `app/components/growave/GrowaveWidgets.tsx` has the widget placeholders, plus the customization hook and style fixes that `app/root.tsx` puts in `<head>`.
 - `app/routes/api.*.tsx` are the cart routes behind Growave's custom cart repository and discount strategy; `app/lib/growave.ts` adapts the Hydrogen cart for them.
 - `app/entry.server.tsx` allows Growave's domains in the content security policy (`GROWAVE_CSP`).
 
@@ -115,6 +115,8 @@ Behind a proxy or load balancer that terminates TLS, the server takes the protoc
 The same server runs without Docker after a build: `npm run build`, then `node --env-file=envs/demo.env node-server.mjs` (port 3000 unless `PORT` is set).
 
 ## Scripts
+
+The `Makefile` has a target for each way to run the demo, and `make` lists them: `make dev`, `make preview` (production build in MiniOxygen, the local Oxygen runtime), `make start` (production build on `node-server.mjs`) and `make docker`. They take `STORE` and `PORT`, for example `make preview STORE=acme`.
 
 - `npm run dev`: dev server on port 3081 (override with `PORT`) with GraphQL codegen; `STORE=<name>` selects `envs/<name>.env` (`demo` by default)
 - `npm run tunnel`: ngrok tunnel for customer login with the Headless channel (`TUNNEL_URL`, `PORT`)

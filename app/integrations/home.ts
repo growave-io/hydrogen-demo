@@ -22,7 +22,7 @@ export const productCardWidgets: Integration = {
     wishlistCounterPosition="left"
   />
 </div>`,
-  file: 'app/components/ProductItem.tsx',
+  file: 'app/components/product/ProductItem.tsx',
   docsUrl: placeholderDocsUrl('wishlists/add_to_wishlist_product_card_widget'),
 };
 

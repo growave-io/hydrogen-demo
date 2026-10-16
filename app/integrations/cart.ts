@@ -18,6 +18,6 @@ export const cartRewards: Integration = {
 />
 <RewardsAvailableRewardsCartWidget />
 <WishlistsSaveForLaterModalWidget />`,
-  file: 'app/components/CartSummary.tsx',
+  file: 'app/components/cart/CartSummary.tsx',
   docsUrl: placeholderDocsUrl('rewards/rewards_earn_points_cart_widget'),
 };

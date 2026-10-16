@@ -1,8 +1,8 @@
 import type {Route} from './+types/pages.reviews';
 import {ReviewsPageWidget} from '@growave-io/react-sdk';
-import {IntegrationSection} from '~/components/IntegrationSection';
+import {IntegrationSection} from '~/components/growave/IntegrationSection';
 import {reviewsPage} from '~/integrations/pages';
-import {WidgetPage} from '~/components/WidgetPage';
+import {WidgetPage} from '~/components/growave/WidgetPage';
 
 export const meta: Route.MetaFunction = () => {
   return [{title: 'Reviews Page'}];

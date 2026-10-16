@@ -8,9 +8,9 @@ import {
   getAdjacentAndFirstAvailableVariants,
   useSelectedOptionInUrlParam,
 } from '@shopify/hydrogen';
-import {ProductPrice} from '~/components/ProductPrice';
-import {ProductImage} from '~/components/ProductImage';
-import {ProductForm} from '~/components/ProductForm';
+import {ProductPrice} from '~/components/product/ProductPrice';
+import {ProductImage} from '~/components/product/ProductImage';
+import {ProductForm} from '~/components/product/ProductForm';
 import {
   GiftRegistryAddToRegistryProductPageWidget,
   InstagramGalleryWidget,
@@ -20,8 +20,8 @@ import {
   RewardsEarnPointsProductPageWidget,
   WishlistsAddToWishlistProductPageWidget,
 } from '@growave-io/react-sdk';
-import {useGrowaveConfig} from '~/components/GrowaveWidgets';
-import {IntegrationSection} from '~/components/IntegrationSection';
+import {useGrowaveConfig} from '~/components/growave/GrowaveWidgets';
+import {IntegrationSection} from '~/components/growave/IntegrationSection';
 import {
   productActions,
   productInstagramGallery,

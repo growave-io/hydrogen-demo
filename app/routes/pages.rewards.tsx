@@ -7,7 +7,7 @@ import {
   RewardsWaysToEarnPageWidget,
   RewardsWaysToSpendPageWidget,
 } from '@growave-io/react-sdk';
-import {IntegrationSection} from '~/components/IntegrationSection';
+import {IntegrationSection} from '~/components/growave/IntegrationSection';
 import {
   rewardsAvailableRewards,
   rewardsHistory,
@@ -16,7 +16,7 @@ import {
   rewardsWaysToEarn,
   rewardsWaysToSpend,
 } from '~/integrations/pages';
-import {WidgetPage} from '~/components/WidgetPage';
+import {WidgetPage} from '~/components/growave/WidgetPage';
 
 export const meta: Route.MetaFunction = () => {
   return [{title: 'Rewards Page'}];

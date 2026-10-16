@@ -1,12 +1,12 @@
 import type {CartApiQueryFragment} from 'storefrontapi.generated';
-import type {CartLayout} from '~/components/CartMain';
+import type {CartLayout} from '~/components/cart/CartMain';
 import {CartForm, Money, type OptimisticCart} from '@shopify/hydrogen';
 import {useId} from 'react';
 import {Button} from '~/components/ui/button';
 import {Input} from '~/components/ui/input';
 import {Separator} from '~/components/ui/separator';
 import {cn} from '~/lib/utils';
-import {IntegrationSection} from '~/components/IntegrationSection';
+import {IntegrationSection} from '~/components/growave/IntegrationSection';
 import {cartRewards} from '~/integrations/cart';
 import {
   RewardsAvailableRewardsCartWidget,

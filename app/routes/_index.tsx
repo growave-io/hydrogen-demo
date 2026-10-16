@@ -7,13 +7,16 @@ import type {
   HeroCollectionFragment,
   RecommendedProductsQuery,
 } from 'storefrontapi.generated';
-import {ProductItem, PRODUCT_GRID_CLASS} from '~/components/ProductItem';
+import {
+  ProductItem,
+  PRODUCT_GRID_CLASS,
+} from '~/components/product/ProductItem';
 import {
   InstagramGalleryWidget,
   ReviewsSliderWidget,
 } from '@growave-io/react-sdk';
-import {useGrowaveConfig} from '~/components/GrowaveWidgets';
-import {IntegrationSection} from '~/components/IntegrationSection';
+import {useGrowaveConfig} from '~/components/growave/GrowaveWidgets';
+import {IntegrationSection} from '~/components/growave/IntegrationSection';
 import {
   homeInstagramGallery,
   productCardWidgets,
@@ -23,7 +26,7 @@ import {Badge} from '~/components/ui/badge';
 import {Button} from '~/components/ui/button';
 
 export const meta: Route.MetaFunction = () => {
-  return [{title: 'Hydrogen Demo'}];
+  return [{title: 'Growave Hydrogen Demo'}];
 };
 
 export async function loader({context}: Route.LoaderArgs) {
